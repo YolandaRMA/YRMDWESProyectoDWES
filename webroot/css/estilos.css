@@ -1,0 +1,130 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #111111;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #111827;
+    color: #ffffff;
+    text-align: center;
+    padding: 45px 20px;
+}
+header h1 {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex: 1;
+    padding: 60px 0;
+}
+
+.Ut {
+    background-color: #f7f7f7;
+    padding: 40px 50px;
+    border: 1px solid #e5e5e5;
+}
+
+.Ut h2 {
+    font-size: 25px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 35px;
+    letter-spacing: 1px;
+}
+
+.Ut ul {
+    list-style: none;
+}
+
+.Ut li {
+    padding: 20px 10px;
+    border-bottom: 1px solid #dddddd;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+}
+.Ut li:last-child {
+    border-bottom: none;
+}
+.Ut li:hover {
+    background-color: #eeeeee;
+}
+
+.Ut a {
+    color: #111111;
+    margin-left: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 1px solid #111111;
+}
+
+.Ut a:hover {
+    color: #666666;
+    border-color: #666666;
+}
+
+footer {
+    background-color: #111827;
+    color: #ffffff;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+footer a:hover {
+    color: #d1d5db;
+}
+
+.footer-text {
+    margin-top: 15px;
+}
+.footer-text p {
+    font-size: 13px;
+    color: #d1d5db;
+}
+.footer-text time {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* DISEÑO PARA MÓVILES */
+@media (max-width: 700px) {
+
+    header h1 {
+        font-size: 24px;
+    }
+    main {
+        width: 95%;
+        padding: 30px 0;
+    }
+    .Ut {
+        padding: 25px 20px;
+    }
+    .Ut li {
+        font-size: 14px;
+    }
+}
