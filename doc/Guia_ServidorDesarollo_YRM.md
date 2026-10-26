@@ -50,7 +50,7 @@ Se definen los recursos de la máquina virtual y se comprueba cómo ha quedado i
 *   **RAM:** `2048 MB` (2 GB)
 *   **Particiones:** `150GB` (`/`), `350GB` (`/var`) y `4GB` de `swap`.
 
-Para consultar la versión de Ubuntu, el kernel, los discos y el espacio disponible:
+Consultar la versión de Ubuntu, el kernel, los discos y el espacio disponible:
 
     uname -a
     lsb_release -a
@@ -64,19 +64,19 @@ Para consultar la versión de Ubuntu, el kernel, los discos y el espacio disponi
 
 Se asigna un nombre al servidor y una dirección IP adecuada para trabajar desde clase o desde casa.
 
-Asegúrate de que el nombre del host sea correcto:
+Cambiar nombre del host:
 
     sudo hostnamectl set-hostname YRM-USED
     sudo nano /etc/hosts
 
-Para configurar la red estática editamos Netplan:
+Configurar la red estáticaen Netplan:
 
     cd /etc/netplan
     ls
     sudo cp 00-installer-config.yaml 00-installer-config.yaml.backup
     sudo nano 00-installer-config.yaml
 
-**Parámetros de Red en CLASE (IES Los Sauces)**:
+**Parámetros Red en CLASE **:
 
     network:
       ethernets:
@@ -93,7 +93,7 @@ Para configurar la red estática editamos Netplan:
                 via: 10.199.8.1
       version: 2
 
-**Parámetros de Red en CASA**:
+**Parámetros Red en CASA(se fija la ip 100)**:
 
     network:
       ethernets:
@@ -123,18 +123,18 @@ Para ver las direcciones IP, la ruta de salida y la configuración DNS:
 
 Se actualiza Ubuntu, se configura la hora y se habilitan servicios básicos de acceso y protección.
 
-Actualización del sistema y configuración de zona horaria:
+Actualización sistema y configurarde zona horaria:
 
     sudo apt update && sudo apt upgrade -y
     date
     sudo timedatectl set-timezone Europe/Madrid
 
-Habilitar Cortafuegos y puertos básicos (SSH):
+Habilitar Cortafuegos y puerto 22(SSH):
 
     sudo ufw enable
     sudo ufw allow 22/tcp
 
-Instalar y actualizar Antivirus ClamAV:
+Instalacion antivirus:
 
     sudo apt install clamav clamav-daemon -y
     sudo systemctl stop clamav-freshclam
@@ -146,7 +146,7 @@ Instalar y actualizar Antivirus ClamAV:
 
 Se comprueba que el servidor responde por red y que permite entrar mediante SSH.
 
-Desde el terminal (CMD) de tu máquina anfitriona, haz ping y conéctate:
+Desde el terminal (CMD) del anfitrion ping para comprobar y ssh usuario@ip para conectarse en remoto:
 
     ping 10.199.11.90
     ssh miadmin@10.199.11.90
@@ -166,7 +166,7 @@ Crear `miadmin2` y añadirlo a varios grupos administrativos:
     sudo useradd -m -G sudo,adm,cdrom,dip,plugdev,lxd -s /bin/bash miadmin2
     sudo passwd miadmin2
 
-Comprobar pertenencia a grupos:
+Comprobar grupos y corroborar que pertenezcan los usuarios adjudicados:
 
     cat /etc/group | grep miadmin
     cat /etc/passwd | grep miadmin
@@ -181,7 +181,7 @@ Apache recibe las peticiones del navegador y sirve las páginas alojadas en el s
 
 Se instala Apache, se abre el puerto HTTP y se verifica que el servicio está funcionando.
 
-Instalación de Apache y apertura del puerto 80:
+Instalación y puerto 80:
 
     sudo apt update
     sudo apt install apache2 -y
@@ -197,13 +197,13 @@ Creamos un directorio para los errores en la raíz web:
     sudo mkdir /var/www/html/error
     sudo touch /var/www/html/error/error.log
 
-Editamos el VirtualHost por defecto (`000-default.conf`):
+Se edita VirtualHost 000-default.conf haciendo primero copia de seguridad con añadido ".backup":
 
     cd /etc/apache2/sites-available
     sudo cp 000-default.conf 000-default.conf.backup
     sudo nano 000-default.conf
 
-Dentro de `<VirtualHost *:80>`, añade o modifica:
+modificación de  `<VirtualHost *:80>`,:
 
     ErrorLog /var/www/html/error/error.log
     ErrorDocument 404 /error/404.html
@@ -212,11 +212,11 @@ Dentro de `<VirtualHost *:80>`, añade o modifica:
 
 Esta opción permite que los archivos `.htaccess` definan determinadas reglas para el directorio web.
 
-Usar el comando `sudo a2enmod rewrite` para activar el modulo de rewrite   
+`sudo a2enmod rewrite` para activar el modulo rewrite   
 
-Entrar al archivo de configuracion usando `sudo nano /etc/apache2/apache2.conf`  
+Dirigete al archivo de conf `sudo nano /etc/apache2/apache2.conf`  
 
-**Modificar el valor de AllowOverride en el archivo:**
+**Se cambia el valor de AllowOverride a `All`:**
 ```bash
 <Directory /var/www/>
   ...
@@ -242,16 +242,24 @@ Activamos el módulo SSL de Apache, que se basa en OpenSSL para proporcionar el 
 
     sudo a2enmod ssl
 
-Comando para crear los archivos del certificado:
+Comando que genera un certificado SSL autofirmado y su clave privada para habilitar HTTPS en Apache:
 
     sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 
-Información solicitada por el sistema (CSR):
+- `**openssl req**`: permite generar certificados y solicitudes de certificado.
+1. `**-x509**`: genera directamente un certificado autofirmado.
+2. `**-nodes**`: crea la clave privada sin cifrarla con una contraseña.
+3. `**-days 365**`: establece una validez de 365 días.
+4. `**-newkey rsa:2048**`: genera una nueva clave RSA de 2048 bits.
+5. `**-keyout**`: indica dónde guardar la clave privada.
+6. `**-out**`: indica dónde guardar el certificado.
+
+Al ejecutarlo, el sistema te pedirá los siguientes valores(ajustense según necesidad):
 *   **Country Name:** `ES`
 *   **State or Province Name:** `ZAMORA`
 *   **Locality Name:** `BENAVENTE`
-*   **Organization Name:** `IES LOS SAUCES` (Preferente en mayúsculas).
-*   **Organizational Unit Name:** `INFORMATICA`
+*   **Organization Name:** `IES LOS SAUCES`
+*   **Organizational Unit Name:** `DAW2`
 *   **Common Name:** `yrm-used` (Nombre del dominio/servidor sin espacios).
 *   **Email Address:** (Dejar en blanco).
 
@@ -261,7 +269,7 @@ Configuración del sitio virtual seguro:
     sudo cp default-ssl.conf default-ssl.conf.backup
     sudo nano default-ssl.conf
 
-Configuración dentro de `<VirtualHost *:443>`:
+Configuración de `<VirtualHost *:443>`:
 
     ServerAdmin webmaster@localhost
     ServerName 10.199.11.90
@@ -269,16 +277,22 @@ Configuración dentro de `<VirtualHost *:443>`:
     SSLEngine on
     SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
     SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
-    ErrorLog ${APACHE_LOG_DIR}/mdc-ssl-error.log
-    CustomLog ${APACHE_LOG_DIR}/mdc-ssl-access.log combined
+    ErrorLog ${APACHE_LOG_DIR}/yrm-ssl-error.log
+    CustomLog ${APACHE_LOG_DIR}/yrm-ssl-access.log combined
 
-Activación del sitio virtual seguro:
+Se activa el sitio virtual de Apache configurado para utilizar HTTP,apertura puerto 443 y reinicio:
 
     sudo a2ensite default-ssl.conf
     sudo ufw allow 443
     sudo systemctl restart apache2
 
-Comprobación desde el navegador estableciendo una conexión segura: `https://10.199.11.90`.
+Desde tu navegador,comprueba (al ser un certificado autofirmado y no oficial,el navegador advierte): `https://10.199.11.90`.
+
+![Aviso del navegador](imagesCaptura/certAutoFirm.PNG)
+
+para comprobar la informacion que pidió el sistema en el paso anterior al pulsar en no seguro opciones conexión no segura  mas inf….
+
+![cOMPROBACION DATOS SOLICITADOS](imagesCaptura/httpsComp.PNG)
 
 ### 3.5. Enviar las peticiones HTTP hacia HTTPS
 
