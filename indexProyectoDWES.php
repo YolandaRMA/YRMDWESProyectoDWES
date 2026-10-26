@@ -26,6 +26,10 @@
 
                 <li>
                     INSTALACIÓN, CONFIGURACIÓN Y DOCUMENTACIÓN DEL ENTORNO DE DESARROLLO Y DEL ENTORNO DE EXPLOTACIÓN
+                    <br>
+                    <br>
+                    <a href="doc/Guia_ServidorDesarrollo_YRM.md" target="_blank">USED</a>
+<!--                    <a href="./doc/ClienteDeDesarrollo.pdf" class="ej"  target="_blank">W10ED</a>-->
                 </li>
 
                 <li>  
