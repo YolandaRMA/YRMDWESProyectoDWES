@@ -21,7 +21,7 @@
             <ul>
                 <li>
                     DESARROLLO WEB EN ENTORNO SERVIDOR.
-                    <a href="doc/Ejercicio1.pdf" target="_blank">  Estudio Tema 1.</a>
+                    <a href="doc/EstudioTema1.pdf" target="_blank">  Estudio Tema 1.</a>
                 </li>
 
                 <li>
