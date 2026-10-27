@@ -28,8 +28,8 @@
                     INSTALACIÓN, CONFIGURACIÓN Y DOCUMENTACIÓN DEL ENTORNO DE DESARROLLO Y DEL ENTORNO DE EXPLOTACIÓN
                     <br>
                     <br>
-                    <a href="https://github.com/YolandaRMA/YRMDWESProyectoDWES/blob/master/doc/Guia_ServidorDesarollo_YRM.md" target="_blank">USED</a>
-<!--                    <a href="./doc/ClienteDeDesarrollo.pdf" class="ej"  target="_blank">W10ED</a>-->
+                    <a href="https://github.com/YolandaRMA/YRMDWESProyectoDWES/blob/master/doc/Guia_ServidorDesarollo_YRM.md" target="_blank">USED </a>
+<!--                    <a href="./doc/ClienteDeDesarrollo.pdf" class="ej"  target="_blank">W10ED - cliente desarrollo</a>-->
                 </li>
 
                 <li>  
@@ -55,7 +55,7 @@
 
         <div class="footer-text">
             <p>2026-27 IES Los Sauces. &copy; Todos los derechos reservados.<a href="../index.html">Yolanda Rodríguez Moreno</a></p>
-            <time datetime="2026-09-30">Última actualización: 30 de Septiembre de 2026</time>
+            <time datetime="2026-09-30">Última actualización: 27 de Octubre de 2026</time>
         </div>
     </footer>
 
