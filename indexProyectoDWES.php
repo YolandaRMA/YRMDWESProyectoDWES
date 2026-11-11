@@ -51,7 +51,7 @@
                         <a href="/YRMDWESProyectoTema5/indexProyectoTema5.php">Proyecto tema 5</a>
                         <br>
                         <br>
-                        <a href="/YRMDWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php">Proyecto Iniciar/cerrar sesión</a>
+                        <a href="/YRMDWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php">Proyecto Login Logoff tema 5</a>
                     </li>
 
                     <li>APLICACIONES WEB MULTICAPA</li>
